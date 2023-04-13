@@ -1,0 +1,117 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2023 20:08:31 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\Main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Main
+                    -.lst) TABS(2) OBJECT(.\Objects\Main.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          
+   3          unsigned char Column[8] = {0x80 , 0x40 , 0x10 , 0x08 , 0x04 , 0x02 , 0x01};
+   4          unsigned char Row[102] = { 0xFF , 0xC0 , 0xB7 , 0x77 , 0xB7 , 0xC0, //A
+   5                                     0xFF , 0x00 , 0x6E , 0x6E , 0x6E , 0x91 , //B
+   6                                     0xFF , 0x81 , 0x7E , 0x7E , 0x7E , 0xBD , //C
+   7                                     0xFF , 0x00 , 0x7E , 0x7E , 0x7E , 0x81 , //D
+   8                                     0xFF , 0x00 , 0x6E , 0x6E , 0x6E , 0x7E , // E
+   9                                     0xFF , 0x00 , 0x6F , 0x6F , 0x6F , 0x7F , //F
+  10                                     0xFF , 0x81 , 0x7E , 0x7E , 0x76 , 0xB9 , //G
+  11                                     0xFF , 0x00 , 0xEF , 0xEF , 0xEF , 0x00 , //H
+  12                                     0xFF , 0xFF , 0x7E , 0x00 , 0x7E , 0xFF, //I
+  13                                     0xFF , 0xF9 , 0x7E , 0x7E , 0x01 , 0x7F, //J
+  14                                     0xFF , 0x00 , 0xE7 , 0xDB , 0xBD , 0x7E , //K
+  15                                     0xFF , 0x00 , 0xFE , 0xFE , 0xFE , 0xFE , //L
+  16                                     0xFF , 0x80 , 0x7F , 0x81 , 0x7F , 0x80, //M
+  17                                     0xFF , 0x00 , 0xBF , 0xC3 , 0xFD , 0x00, //N
+  18                                     0xFF , 0x81 , 0x7E , 0x7E , 0x7E , 0x81, //O
+  19                                     0xFF , 0x80 , 0x77 , 0x77 , 0x77 , 0x8F, //P
+  20                                     0xFF , 0x81 , 0x7E , 0x7E , 0x81 , 0xFE  //Q
+  21          };
+  22          
+  23          sbit Data_Row = P2^7; //
+  24          sbit LA_Clock_Row = P2^6;
+  25          sbit Sh_Clock_Row = P2^5;
+  26          
+  27          sbit Data_Col = P2^2;
+  28          sbit LA_Clock_Col = P2^1;
+  29          sbit Sh_Clock_Col = P2^0;
+  30          
+  31          void Delay(unsigned int);
+  32          unsigned char i, j, m, n, l, x, y, z;
+  33          
+  34          void main()
+  35          {
+  36   1        i = 0;
+  37   1        j = 0;
+  38   1        m = 0;
+  39   1        n = 0;
+  40   1        l = 0;
+  41   1        x = 0;
+  42   1        y = 0;
+  43   1        
+  44   1        LA_Clock_Row = 0;
+  45   1        Sh_Clock_Row = 0;
+  46   1        LA_Clock_Col = 0;
+  47   1        Sh_Clock_Col = 0;
+  48   1        
+  49   1        while(1){
+  50   2          for(m = 0 ; m < 15 ; m++) // Delay for next Alphabet
+  51   2          {
+  52   3            for(n = 0 ; n < 8 ; n++) // Send Column Data
+  53   3            {
+  54   4              for(z = 0 ; z < 8 ; z++)  // Send Colmun Data Bit by Bit
+C51 COMPILER V9.60.7.0   MAIN                                                              03/19/2023 20:08:31 PAGE 2   
+
+  55   4              {
+  56   5                Data_Col = (x>>z) & 0x01;
+  57   5                Sh_Clock_Col = 0; // Send Low to Shift Clock
+  58   5                Sh_Clock_Col = 1; // Send High to Shift Clock
+  59   5              }
+  60   4              LA_Clock_Col = 0; // Send Low to Latch Clock
+  61   4              LA_Clock_Col = 1; // Send High to Latch Clock
+  62   4              x = Column[n];
+  63   4              
+  64   4              for(z = 0 ; z < 8 ; z++)
+  65   4              {
+  66   5                Data_Row = (y>>z) & 0x01;
+  67   5                Sh_Clock_Row = 0; // Send Low to Latch Clock
+  68   5                Sh_Clock_Row = 1; // Send Hight to Shift Clock
+  69   5              }
+  70   4              LA_Clock_Row = 0; // Send Low to Latch Clock
+  71   4              LA_Clock_Row = 1; // Send High to Latch Clock
+  72   4              Delay(1);
+  73   4              
+  74   4              j++;
+  75   4              if(j==102) j = 0;
+  76   4              y = Row[j];  // Put Row data into y
+  77   4            }
+  78   3            j = l;
+  79   3            if(l==102) l = 0;
+  80   3          }
+  81   2          l++;
+  82   2          j = l;
+  83   2        }
+  84   1      }
+  85          
+  86          void Delay(unsigned int num)
+  87          {
+  88   1        unsigned int i, j;
+  89   1        for(i = 0 ; i < num ; i++)
+  90   1        for(j = 0 ; j < 1000000 ; j++);
+  91   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    227    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =    118       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
