@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1675978087 source:c:\users\dell\documents\workstps\graph_programming_c\main.c
+	<stdio.h>
+	<stdlib.h>
+

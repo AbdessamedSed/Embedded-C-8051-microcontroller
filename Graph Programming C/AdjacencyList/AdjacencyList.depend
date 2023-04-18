@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1676213380 source:c:\users\dell\documents\workstps\graph programming c\adjacency-list\adjacencylist\main.c
+	<stdio.h>
+	<stdlib.h>
+
