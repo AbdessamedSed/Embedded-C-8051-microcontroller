@@ -1,0 +1,207 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    03/19/2023  20:08:32  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\Main.obj TO .\Objects\SE6 PRINT (.\Listings\SE6.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\Main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SLCMP)
+
+
+LINK MAP OF MODULE:  .\Objects\SE6 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0076H     UNIT         ?DT?MAIN
+            IDATA   007EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     00AAH     UNIT         ?PR?MAIN?MAIN
+            CODE    08AAH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0936H     0074H     UNIT         ?C_INITSEG
+            CODE    09AAH     0039H     UNIT         ?PR?_DELAY?MAIN
+            CODE    09E3H     0016H     UNIT         ?C?LIB_CODE
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\SE6 (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?_DELAY?MAIN
+
+?PR?_DELAY?MAIN                0000H    0004H
+
+
+
+IGNORED SEGMENTS:
+   _DATA_GROUP_
+
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  03/19/2023  20:08:32  PAGE 2
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\SE6 (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:08AAH         SEGMENT       ?C_C51STARTUP
+  I:007EH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:08ADH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:08AAH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:08AAH         LINE#         133
+  C:08ACH         LINE#         134
+  C:08ADH         LINE#         135
+  C:08AEH         LINE#         136
+  C:08B0H         LINE#         185
+  C:08B3H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  B:00A0H.0       PUBLIC        Sh_Clock_Col
+  B:00A0H.7       PUBLIC        Data_Row
+  B:00A0H.5       PUBLIC        Sh_Clock_Row
+  C:0800H         PUBLIC        main
+  D:0008H         PUBLIC        Row
+  B:00A0H.1       PUBLIC        LA_Clock_Col
+  D:006EH         PUBLIC        i
+  D:006FH         PUBLIC        j
+  D:0070H         PUBLIC        l
+  D:0071H         PUBLIC        m
+  D:0072H         PUBLIC        n
+  C:09AAH         PUBLIC        _Delay
+  D:0073H         PUBLIC        Column
+  B:00A0H.6       PUBLIC        LA_Clock_Row
+  D:007BH         PUBLIC        x
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  03/19/2023  20:08:32  PAGE 3
+
+
+  D:007CH         PUBLIC        y
+  D:007DH         PUBLIC        z
+  B:00A0H.2       PUBLIC        Data_Col
+  -------         PROC          MAIN
+  C:0800H         LINE#         34
+  C:0800H         LINE#         35
+  C:0800H         LINE#         36
+  C:0803H         LINE#         37
+  C:0805H         LINE#         38
+  C:0807H         LINE#         39
+  C:0809H         LINE#         40
+  C:080BH         LINE#         41
+  C:080DH         LINE#         42
+  C:080FH         LINE#         44
+  C:0811H         LINE#         45
+  C:0813H         LINE#         46
+  C:0815H         LINE#         47
+  C:0817H         LINE#         49
+  C:0817H         LINE#         50
+  C:081AH         LINE#         51
+  C:081AH         LINE#         52
+  C:081DH         LINE#         53
+  C:081DH         LINE#         54
+  C:0820H         LINE#         55
+  C:0820H         LINE#         56
+  C:0830H         LINE#         57
+  C:0832H         LINE#         58
+  C:0834H         LINE#         59
+  C:083BH         LINE#         60
+  C:083DH         LINE#         61
+  C:083FH         LINE#         62
+  C:0847H         LINE#         64
+  C:084AH         LINE#         65
+  C:084AH         LINE#         66
+  C:085AH         LINE#         67
+  C:085CH         LINE#         68
+  C:085EH         LINE#         69
+  C:0865H         LINE#         70
+  C:0867H         LINE#         71
+  C:0869H         LINE#         72
+  C:0870H         LINE#         74
+  C:0872H         LINE#         75
+  C:087AH         LINE#         76
+  C:0882H         LINE#         77
+  C:088BH         LINE#         78
+  C:088EH         LINE#         79
+  C:0896H         LINE#         80
+  C:08A2H         LINE#         81
+  C:08A4H         LINE#         82
+  C:08A7H         LINE#         83
+  -------         ENDPROC       MAIN
+  -------         PROC          _DELAY
+  D:0000H         SYMBOL        num
+  -------         DO            
+  D:0002H         SYMBOL        i
+  D:0082H         SYMBOL        j
+  -------         ENDDO         
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  03/19/2023  20:08:32  PAGE 4
+
+
+  C:09AAH         LINE#         86
+  C:09AEH         LINE#         87
+  C:09AEH         LINE#         89
+  C:09BEH         LINE#         90
+  C:09E2H         LINE#         91
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?SLCMP
+  C:09E3H         PUBLIC        ?C?SLCMP
+  -------         ENDMOD        ?C?SLCMP
+
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   DATA    
+    SEGMENT: _DATA_GROUP_
+    LENGTH:  0004H
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0165H BYTE (17%) *
+******************************************************************************
+
+Program Size: data=131.0 xdata=0 code=508
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  1 ERROR(S)

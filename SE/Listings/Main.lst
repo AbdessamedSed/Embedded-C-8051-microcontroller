@@ -1,0 +1,124 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              03/17/2023 18:23:49 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\Main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Main
+                    -.lst) TABS(2) OBJECT(.\Objects\Main.obj)
+
+line level    source
+
+   1          #include<REG51.h>
+   2          sbit LED1 = P0^0;
+   3          sbit LED2 = P0^1;
+   4          sbit LED3 = P0^2;
+   5          sbit LED4 = P0^3;
+   6          sbit LED5 = P0^4;
+   7          sbit LED6 = P0^5;
+   8          sbit LED7 = P0^6;
+   9          sbit LED8 = P0^7;
+  10          
+  11          sbit SW1 = P2^6;
+  12          sbit SW2 = P2^7;
+  13          
+  14          void Delay();
+  15          void main(void){
+  16   1        
+  17   1        unsigned int z;
+  18   1        
+  19   1        /*while(1){
+  20   1        LED = 1;
+  21   1          Delay();
+  22   1          LED = 0;
+  23   1          Delay();
+  24   1        
+  25   1        }*/
+  26   1        z = 0;
+  27   1        SW1 = 1;
+  28   1        SW2 = 1;
+  29   1        while (1){
+  30   2          
+  31   2          if (SW1 == 0){
+  32   3            z++;
+  33   3            while(SW1 == 0);
+  34   3            if (z == 9) z = 0;
+  35   3          }
+  36   2          
+  37   2          if(SW2 == 0){
+  38   3            
+  39   3            switch(z){
+  40   4              case (1):
+  41   4              {
+  42   5                LED1 = ~ LED1;
+  43   5                z = 0;
+  44   5                break;
+  45   5              }
+  46   4              case (2):
+  47   4              {
+  48   5                LED2 = ~ LED2;
+  49   5                z = 0;
+  50   5                break;
+  51   5              }
+  52   4              case(3):
+  53   4              {
+  54   5                LED3 = ~ LED3;
+C51 COMPILER V9.60.7.0   MAIN                                                              03/17/2023 18:23:49 PAGE 2   
+
+  55   5                z = 0;
+  56   5                break;
+  57   5              }
+  58   4              case (4):
+  59   4              {
+  60   5                LED4 = ~ LED4;
+  61   5                z = 0;
+  62   5                break;
+  63   5              }
+  64   4              case (5):
+  65   4              {
+  66   5                LED5 = ~ LED5;
+  67   5                z = 0;
+  68   5                break;
+  69   5              }case (6):
+  70   4              {
+  71   5                LED6 = ~ LED6;
+  72   5                z = 0;
+  73   5                break;
+  74   5              }case (7):
+  75   4              {
+  76   5                LED7 = ~ LED7;
+  77   5                z = 0;
+  78   5                break;
+  79   5              }
+  80   4              case (8):
+  81   4              {
+  82   5                LED8 = ~ LED8;
+  83   5                z = 0;
+  84   5                break;
+  85   5              }
+  86   4              
+  87   4            }
+  88   3            
+  89   3          }
+  90   2          
+  91   2        }
+  92   1        
+  93   1      }
+  94          void Delay(){
+  95   1        unsigned int x, y;
+  96   1        for(x = 0 ; x < 1000 ; x++)
+  97   1        for(y = 0 ; y < 165 ; y++);
+  98   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    144    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
