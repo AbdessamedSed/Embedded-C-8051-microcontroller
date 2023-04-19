@@ -1,0 +1,82 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              04/19/2023 11:27:25 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\Main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Main
+                    -.lst) TABS(2) OBJECT(.\Objects\Main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          sbit LED1 = P2^0;
+   4          sbit LED2 = P2^1;
+   5          
+   6          void SerTx(unsigned char);  //data   transfer
+   7          void Delay(void);
+   8          unsigned char y;
+   9          
+  10          void serial0() interrupt 4  //serial interrupt subroutine
+  11          {
+  12   1        if (TI == 1)  //transmit interrupt flag
+  13   1        {
+  14   2          TI = 0; //clear interrupt
+  15   2        }
+  16   1        else
+  17   1        {
+  18   2          y = SBUF; //put value in pins
+  19   2          if(y == '1')
+  20   2          {
+  21   3            LED1 = ~ LED1;
+  22   3            Delay();
+  23   3          }
+  24   2          if(y == '2')
+  25   2          {
+  26   3            LED2 =  ~ LED2;
+  27   3            Delay();
+  28   3          }
+  29   2          RI = 0; //clear interrupt
+  30   2                  //receive interrupt flag
+  31   2        }
+  32   1      }
+  33          
+  34          void main()
+  35          {
+  36   1        TMOD = 0x20;  // Timer 1 , Mode 2 Auto Reload
+  37   1        TH1 = 0xFD; //Selecting Baud Rate
+  38   1        SCON = 0x50;  //Mode 1 with start bit and stop bit = Serial mode selection
+  39   1        TR1 = 1;  //start timer
+  40   1        IE = 0x90;  //enable serial interrupt
+  41   1        while(1);
+  42   1        
+  43   1      }
+  44          
+  45          void SerTx(unsigned char x)
+  46          {
+  47   1        SBUF = x;
+  48   1        while (TI == 0);  //wait until data transfer
+  49   1        TI = 0; //clear TI
+  50   1      }
+  51          
+  52          void Delay(void)
+  53          {
+  54   1        unsigned char i;
+C51 COMPILER V9.60.7.0   MAIN                                                              04/19/2023 11:27:25 PAGE 2   
+
+  55   1        for(i = 0 ; i < 5 ; i++);
+  56   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    119    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
